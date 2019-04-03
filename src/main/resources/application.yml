@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    username: root
+    password: 524f4f54
+    url: jdbc:mysql://localhost:3306/backup?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    database-platform: com.example.adminmanage.global.config.MysqlConfig
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
