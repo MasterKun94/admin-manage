@@ -3,6 +3,7 @@ package com.example.adminmanage.service;
 import com.example.adminmanage.dao.UserRepository;
 import com.example.adminmanage.entity.User;
 import com.example.adminmanage.global.config.StatusCode;
+import com.example.adminmanage.global.config.UserType;
 import com.example.adminmanage.global.response.CommitResponse;
 import com.example.adminmanage.global.response.LoginResponse;
 import com.example.adminmanage.global.response.ResponseFactory;
@@ -31,13 +32,26 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public CommitResponse changeUser(User user) {
-        User user1 = userRepository.findByUserName(user.getUserName())
-                .orElse(new User(user.getUserName()));
-        user1.setUserType(user.getUserType());
-        user1.setAccountStatus(user.isAccountStatus());
-        user1.setRemarksInfo(user.getRemarksInfo());
+        User user1 = userRepository.findUserByUserName(user.getUserName());
+        if (user1 == null)
+            return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
 
-        return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
+        return ResponseFactory.commitResponse(checkAndFlush(user1, user));
+
+    }
+
+    @Override
+    @Transactional
+    public CommitResponse addUser(User user) {
+//        User user1 = userRepository.findByUserName(user.getUserName())
+//                .orElse(new User(user.getUserName()));
+
+        if (userRepository.existsByUserName(user.getUserName()))
+            return ResponseFactory.commitResponse((StatusCode.COMMIT_USER_EXIST));
+
+        User user1 = new User(user.getUserName());
+        return ResponseFactory.commitResponse(checkAndFlush(user1, user));
+
     }
 
     @Override
@@ -63,9 +77,37 @@ public class AdminServiceImpl implements AdminService {
 
         if (user1 == null)
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
-        else
-            user1.setPassWord("123456");
-            return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
 
+        user1.setPassWord("123456");
+        user1.setPassWordStatus(false);
+        userRepository.save(user1);
+        return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
+
+    }
+
+    private boolean checkUser(User user) {
+        String type = user.getUserType();
+        return (type.equals(UserType.ADMIN) ||
+                type.equals(UserType.DATA_ANALYSER) ||
+                type.equals(UserType.DATA_MANAGER));
+    }
+
+    private String checkAndFlush(User originUser, User newUser) {
+        String type = newUser.getUserType();
+
+
+        if (
+                type.equals(UserType.ADMIN) ||
+                type.equals(UserType.DATA_ANALYSER) ||
+                type.equals(UserType.DATA_MANAGER))
+        {
+            originUser.setUserType(newUser.getUserType());
+            originUser.setAccountStatus(newUser.isAccountStatus());
+            originUser.setRemarksInfo(newUser.getRemarksInfo());
+            userRepository.save(originUser);
+            return StatusCode.COMMIT_SUCCESS;
+        } else {
+            return StatusCode.COMMIT_WRONG_ARGS;
+        }
     }
 }

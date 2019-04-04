@@ -10,6 +10,8 @@ public interface AdminService {
 
     CommitResponse changeUser(User user);
 
+    CommitResponse addUser(User user);
+
     LoginResponse checkUserIfValid(String name, String pswd);
 
     CommitResponse resetPassword(String name);

@@ -11,4 +11,5 @@ public class StatusCode {
     public static final String COMMIT_FAIL           = "20001";
     public static final String COMMIT_TIMEOUT        = "20002";
     public static final String COMMIT_WRONG_ARGS     = "20003";
+    public static final String COMMIT_USER_EXIST     = "20004";
 }

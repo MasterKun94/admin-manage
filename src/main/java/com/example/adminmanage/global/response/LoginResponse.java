@@ -27,8 +27,8 @@ public class LoginResponse {
         this.message = StatusCode.LOGIN_SUCCESS;
 
         //TODO token 和 commonMenu 未完成
-        this.token = "";
-        this.commonMenu = "";
+        this.token = "123123";
+        this.commonMenu = "321321";
     }
 
     LoginResponse(String status) {

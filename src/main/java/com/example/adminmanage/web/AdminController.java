@@ -1,8 +1,10 @@
 package com.example.adminmanage.web;
 
 import com.example.adminmanage.entity.User;
+import com.example.adminmanage.global.config.StatusCode;
 import com.example.adminmanage.global.response.CommitResponse;
 import com.example.adminmanage.global.response.LoginResponse;
+import com.example.adminmanage.global.response.ResponseFactory;
 import com.example.adminmanage.global.response.UserManageResponse;
 import com.example.adminmanage.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,17 @@ public class AdminController {
     }
 
     @PostMapping("/manage")
-    public CommitResponse updateUser(
+    public CommitResponse changeUser(
             @RequestBody User user) {
 
         return adminService.changeUser(user);
+    }
+
+    @PutMapping("/manage")
+    public CommitResponse addUser(
+            @RequestBody User user) {
+
+        return adminService.addUser(user);
     }
 
     @GetMapping("/manage")
@@ -37,7 +46,12 @@ public class AdminController {
 
     @PostMapping("/manage/pswdreset")
     public CommitResponse resetPassword(
-            @RequestBody String name) {
+            @RequestBody Map<String, String> info) {
+
+        String name = info.get("userName");
+
+        if (name == null || name.isEmpty())
+            return ResponseFactory.commitResponse(StatusCode.COMMIT_WRONG_ARGS);
 
         return adminService.resetPassword(name);
     }
@@ -46,6 +60,14 @@ public class AdminController {
     public LoginResponse login(
             @RequestBody Map<String, String> info) {
 
-        return adminService.checkUserIfValid(info.get("userName"), info.get("passWord"));
+        String name = info.get("userName");
+        String pswd = info.get("passWord");
+
+        if (name == null || name.isEmpty())
+            return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_USERNAME);
+        else if (pswd == null || pswd.isEmpty())
+            return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_PASSWORD);
+        else
+            return adminService.checkUserIfValid(info.get("userName"), info.get("passWord"));
     }
 }
