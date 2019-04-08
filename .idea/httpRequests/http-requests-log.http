@@ -4,6 +4,397 @@ Cache-Control: no-cache
 Accept: application/json
 Content-Type: application/json
 
+{
+  "userName":"client3",
+  "passWord":"123456"
+}
+
+<> 2019-04-04T023122.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName":"admin3",
+  "userType":"0",
+  "accountStatus":false,
+  "remarksInfo":"hello"
+}
+
+<> 2019-04-04T022803.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-04T022706.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-04T022430.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName":"admin3",
+  "userType":"1",
+  "accountStatus":false,
+  "remarksInfo":"test"
+}
+
+<> 2019-04-04T022401.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName":"client3",
+  "passWord":"123456"
+}
+
+<> 2019-04-04T022232.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-04T015609.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=0&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-04T015547.500.json
+
+###
+
+GET http://localhost:8080/admin/login?pageNum=0&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+<> 2019-04-04T015527.405.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userName":"client3",
+  "passWord":"123456"
+}
+
+<> 2019-04-04T015410.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client3", "passWord":"123456"}
+
+<> 2019-04-04T015052.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"0", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T014802.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"0", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client3", "passWord":"123456"}
+
+<> 2019-04-04T115248.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client4", "passWord":"000000"}
+
+<> 2019-04-04T115207.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=2&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T115132.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=2&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T114922.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T114853.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T113808.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=1&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T113606.200.json
+
+###
+
+GET http://localhost:8080/admin/manage?pageNum=0&pageSize=3
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T113556.200.json
+
+###
+
+POST http://localhost:8080/admin/manage/pswdreset
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client3"}
+
+<> 2019-04-04T113454.200.json
+
+###
+
+GET http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110814.200.json
+
+###
+
+PUT http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110802.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110759.200.json
+
+###
+
+POST http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":true, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110747.200.json
+
+###
+
+PUT http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":true, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110733.200.json
+
+###
+
+PUT http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":"1", "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110653.400.json
+
+###
+
+PUT http://localhost:8080/admin/manage
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"admin3", "userType":"1", "accountStatus":false, "remarksInfo":"kakakaka"}
+
+<> 2019-04-04T110634.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client3", "passWord":"123456"}
+
+<> 2019-04-04T110514.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client4", "passWord":"123456"}
+
+<> 2019-04-04T110456.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
+{"userName":"client4", "passWord":"123456"}
+
+<> 2019-04-04T110438.200.json
+
+###
+
+PUT http://localhost:8080/admin/login
+Accept: */*
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+
 {"userName":"client4", "passWord":"123456"}
 
 <> 2019-04-04T105755.200.json
@@ -136,7 +527,7 @@ Cache-Control: no-cache
 Accept: application/json
 Content-Type: application/json
 
-"userName":"client3"
+{"userName":"client3"}
 
 <> 2019-04-04T102811.404.json
 
@@ -211,160 +602,6 @@ Content-Type: application/json
 {"userName":"client4", "userType":"1"}
 
 <> 2019-04-04T102309.200.json
-
-###
-
-GET http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client4", "userType":"1"}
-
-<> 2019-04-04T102207.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client4", "userType":"1"}
-
-<> 2019-04-04T101732.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client4"}
-
-<> 2019-04-04T101557.500.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client2", "userType":"1"}
-
-<> 2019-04-04T101457.200.json
-
-###
-
-POST http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client2", "userType":"2", "accountStatus":false, "remarksInfo":"kakakaka"}
-
-<> 2019-04-04T101346.200.json
-
-###
-
-POST http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client3", "userType":"2", "accountStatus":false, "remarksInfo":"kakakaka"}
-
-<> 2019-04-04T101331.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client3", "userType":"2", "accountStatus":true, "remarksInfo":"lallalala"}
-
-<> 2019-04-04T101249.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"client1", "userType":"1", "accountStatus":true, "remarksInfo":"heyhey"}
-
-<> 2019-04-04T101224.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"admin2", "userType":"0", "accountStatus":true, "remarksInfo":"hello"}
-
-<> 2019-04-04T101159.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"admin1", "userType":"0", "accountStatus":true}
-
-<> 2019-04-04T101048.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"admin1", "userType":"0", "accountStatus":true}
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"admin1", "userType":"0", "accountStatus":true}
-
-<> 2019-04-04T101008.200.json
-
-###
-
-PUT http://localhost:8080/admin/manage
-Accept: */*
-Cache-Control: no-cache
-Accept: application/json
-Content-Type: application/json
-
-{"userName":"admin1", "userType":"0", "accountStatus":true}
-
-<> 2019-04-04T100840.200.json
 
 ###
 

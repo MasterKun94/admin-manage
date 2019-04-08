@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public UserManageResponse getAllUsers(int start, int size) {
-        Page<User> page = userRepository.findAll(PageRequest.of(start, size));
+        Page<User> page = userRepository.findAll(PageRequest.of(start-1, size));
         return ResponseFactory.userManageResponse(page.getContent());
     }
 
@@ -78,18 +78,11 @@ public class AdminServiceImpl implements AdminService {
         if (user1 == null)
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
 
-        user1.setPassWord("123456");
+        user1.setPassWord("123456");//TODO passwordEncoder
         user1.setPassWordStatus(false);
         userRepository.save(user1);
         return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
 
-    }
-
-    private boolean checkUser(User user) {
-        String type = user.getUserType();
-        return (type.equals(UserType.ADMIN) ||
-                type.equals(UserType.DATA_ANALYSER) ||
-                type.equals(UserType.DATA_MANAGER));
     }
 
     private String checkAndFlush(User originUser, User newUser) {

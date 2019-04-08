@@ -4,7 +4,9 @@ import com.example.adminmanage.entity.User;
 import com.example.adminmanage.global.config.StatusCode;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 //@Setter
@@ -16,7 +18,7 @@ public class LoginResponse {
     private Date loginTime;
     private String code;
     private String message;
-    private String commonMenu;
+    private List<String> commonMenu;
 
     LoginResponse(User user) {
         this.userName = user.getUserName();
@@ -26,9 +28,9 @@ public class LoginResponse {
         this.code = "0";
         this.message = StatusCode.LOGIN_SUCCESS;
 
-        //TODO token 和 commonMenu 未完成
-        this.token = "123123";
-        this.commonMenu = "321321";
+        //TODO
+        this.token = "";
+        this.commonMenu = new ArrayList<>();
     }
 
     LoginResponse(String status) {

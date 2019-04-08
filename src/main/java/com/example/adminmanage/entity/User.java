@@ -2,6 +2,7 @@ package com.example.adminmanage.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@DynamicUpdate
 public class User {
 
     public User() { }
