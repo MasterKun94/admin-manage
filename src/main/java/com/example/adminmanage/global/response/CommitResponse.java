@@ -4,7 +4,7 @@ import com.example.adminmanage.global.config.StatusCode;
 import lombok.Getter;
 
 @Getter
-public class CommitResponse {
+public class CommitResponse implements ResponseEntity {
     private String code;
     private String message;
 

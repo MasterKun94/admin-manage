@@ -4,10 +4,7 @@ import com.example.adminmanage.dao.UserRepository;
 import com.example.adminmanage.entity.User;
 import com.example.adminmanage.global.config.StatusCode;
 import com.example.adminmanage.global.config.UserType;
-import com.example.adminmanage.global.response.CommitResponse;
-import com.example.adminmanage.global.response.LoginResponse;
-import com.example.adminmanage.global.response.ResponseFactory;
-import com.example.adminmanage.global.response.UserManageResponse;
+import com.example.adminmanage.global.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,14 +21,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public UserManageResponse getAllUsers(int start, int size) {
-        Page<User> page = userRepository.findAll(PageRequest.of(start-1, size));
+    public ResponseEntity getAllUsers(int start, int size) {
+
+        Page<User> page = userRepository.findAll(PageRequest.of(start - 1, size));
         return ResponseFactory.userManageResponse(page.getContent());
+
     }
 
     @Override
     @Transactional
-    public CommitResponse changeUser(User user) {
+    public ResponseEntity changeUser(User user) {
         User user1 = userRepository.findUserByUserName(user.getUserName());
         if (user1 == null)
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
@@ -42,9 +41,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public CommitResponse addUser(User user) {
-//        User user1 = userRepository.findByUserName(user.getUserName())
-//                .orElse(new User(user.getUserName()));
+    public ResponseEntity addUser(User user) {
 
         if (userRepository.existsByUserName(user.getUserName()))
             return ResponseFactory.commitResponse((StatusCode.COMMIT_USER_EXIST));
@@ -55,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public LoginResponse checkUserIfValid(String name, String pswd) {
+    public ResponseEntity checkUserIfValid(String name, String pswd) {
         User user1 = userRepository.findUserByUserName(name);
 
         if (user1 == null)
@@ -72,13 +69,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public CommitResponse resetPassword(String name) {
-        User user1 = userRepository.findUserByUserName(name);
+    public ResponseEntity resetPassword(String name) {
+        User user1 = userRepository.findUsernameAndPassWordByUsername(name);
 
         if (user1 == null)
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
 
-        user1.setPassWord("123456");//TODO passwordEncoder
+        user1.resetPassword();
         user1.setPassWordStatus(false);
         userRepository.save(user1);
         return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
@@ -87,8 +84,6 @@ public class AdminServiceImpl implements AdminService {
 
     private String checkAndFlush(User originUser, User newUser) {
         String type = newUser.getUserType();
-
-
         if (
                 type.equals(UserType.ADMIN) ||
                 type.equals(UserType.DATA_ANALYSER) ||

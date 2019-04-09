@@ -2,10 +2,7 @@ package com.example.adminmanage.web;
 
 import com.example.adminmanage.entity.User;
 import com.example.adminmanage.global.config.StatusCode;
-import com.example.adminmanage.global.response.CommitResponse;
-import com.example.adminmanage.global.response.LoginResponse;
-import com.example.adminmanage.global.response.ResponseFactory;
-import com.example.adminmanage.global.response.UserManageResponse;
+import com.example.adminmanage.global.response.*;
 import com.example.adminmanage.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,21 +20,21 @@ public class AdminController {
     }
 
     @PostMapping("/manage")
-    public CommitResponse changeUser(
+    public ResponseEntity changeUser(
             @RequestBody User user) {
 
         return adminService.changeUser(user);
     }
 
     @PutMapping("/manage")
-    public CommitResponse addUser(
+    public ResponseEntity addUser(
             @RequestBody User user) {
 
         return adminService.addUser(user);
     }
 
     @GetMapping("/manage")
-    public UserManageResponse getAllUsers(
+    public ResponseEntity getAllUsers(
             @RequestParam(name = "pageNum", defaultValue = "1") int start,
             @RequestParam(name = "pageSize", defaultValue = "10") int size) {
 
@@ -45,7 +42,7 @@ public class AdminController {
     }
 
     @PostMapping("/manage/pswdreset")
-    public CommitResponse resetPassword(
+    public ResponseEntity resetPassword(
             @RequestBody Map<String, String> info) {
 
         String name = info.get("userName");
@@ -57,7 +54,7 @@ public class AdminController {
     }
 
     @PutMapping("/login")
-    public LoginResponse login(
+    public ResponseEntity login(
             @RequestBody Map<String, String> info) {
 
         String name = info.get("userName");
@@ -68,6 +65,6 @@ public class AdminController {
         else if (pswd == null || pswd.isEmpty())
             return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_PASSWORD);
         else
-            return adminService.checkUserIfValid(info.get("userName"), info.get("passWord"));
+            return adminService.checkUserIfValid(name, pswd);
     }
 }

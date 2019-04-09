@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 //@Setter
-public class LoginResponse {
+public class LoginResponse implements ResponseEntity {
     private String userName;
     private String token;
     private String userType;

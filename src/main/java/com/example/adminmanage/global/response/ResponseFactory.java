@@ -6,19 +6,19 @@ import java.util.List;
 
 public class ResponseFactory {
 
-    public static LoginResponse successLoginResponse(User user) {
+    public static ResponseEntity successLoginResponse(User user) {
         return new LoginResponse(user);
     }
 
-    public static LoginResponse failLoginResponse(String status) {
+    public static ResponseEntity failLoginResponse(String status) {
         return new LoginResponse(status);
     }
 
-    public static UserManageResponse userManageResponse(List<User> users) {
+    public static ResponseEntity userManageResponse(List<User> users) {
         return new UserManageResponse(users);
     }
 
-    public static CommitResponse commitResponse(String status) {
+    public static ResponseEntity commitResponse(String status) {
         return new CommitResponse(status);
     }
 }

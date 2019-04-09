@@ -3,16 +3,17 @@ package com.example.adminmanage.service;
 import com.example.adminmanage.entity.User;
 import com.example.adminmanage.global.response.CommitResponse;
 import com.example.adminmanage.global.response.LoginResponse;
+import com.example.adminmanage.global.response.ResponseEntity;
 import com.example.adminmanage.global.response.UserManageResponse;
 
 public interface AdminService {
-    UserManageResponse getAllUsers(int start, int number);
+    ResponseEntity getAllUsers(int start, int number);
 
-    CommitResponse changeUser(User user);
+    ResponseEntity changeUser(User user);
 
-    CommitResponse addUser(User user);
+    ResponseEntity addUser(User user);
 
-    LoginResponse checkUserIfValid(String name, String pswd);
+    ResponseEntity checkUserIfValid(String name, String pswd);
 
-    CommitResponse resetPassword(String name);
+    ResponseEntity resetPassword(String name);
 }

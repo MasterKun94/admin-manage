@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
-public class UserManageResponse {
+public class UserManageResponse implements ResponseEntity {
     private int listTotal;
     private Date time;
     private List<User> data;

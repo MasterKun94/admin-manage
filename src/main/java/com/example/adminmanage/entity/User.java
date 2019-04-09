@@ -21,7 +21,7 @@ public class User {
         this.accountStatus = true;
         this.passWordStatus = false;
         this.createTime = new Date();
-        this.passWord = "123456";
+        this.resetPassword();
     }
 
     @Id
@@ -46,4 +46,8 @@ public class User {
 
     @Column(name = "createTime", nullable = false, updatable = false)
     private Date createTime;
+
+    public void resetPassword() {
+        this.passWord = "123456";//TODO passwordEncoder
+    }
 }
