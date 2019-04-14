@@ -1,0 +1,7 @@
+{
+  "timestamp": 1555251263921,
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Required request body is missing: public com.example.adminmanage.global.response.LoginResponse com.example.adminmanage.web.AdminController.login(java.util.Map<java.lang.String, java.lang.String>)",
+  "path": "/admin/login"
+}
