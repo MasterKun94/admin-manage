@@ -7,6 +7,7 @@ import com.example.adminmanage.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
@@ -38,7 +39,10 @@ public class AdminController {
             @RequestParam(name = "pageNum", defaultValue = "1") int start,
             @RequestParam(name = "pageSize", defaultValue = "10") int size) {
 
-        return adminService.getAllUsers(start, size);
+        if (start < 1 || size < 1)
+            return ResponseFactory.userManageResponse(new ArrayList<>());
+        else
+            return adminService.getAllUsers(start, size);
     }
 
     @PostMapping("/manage/pswdreset")
@@ -49,8 +53,8 @@ public class AdminController {
 
         if (name == null || name.isEmpty())
             return ResponseFactory.commitResponse(StatusCode.COMMIT_WRONG_ARGS);
-
-        return adminService.resetPassword(name);
+        else
+            return adminService.resetPassword(name);
     }
 
     @PutMapping("/login")
