@@ -61,8 +61,8 @@ public class AdminController {
     public ResponseEntity login(
             @RequestBody Map<String, String> info) {
 
-        String name = info.get("userName");
-        String pswd = info.get("passWord");
+        String name = info.get("username");
+        String pswd = info.get("password");
 
         if (name == null || name.isEmpty())
             return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_USERNAME);

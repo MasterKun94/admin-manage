@@ -3,7 +3,7 @@ package com.example.adminmanage;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.adminmanage.entity.User;
-import com.example.adminmanage.global.config.UserType;
+import com.example.adminmanage.entity.UserType;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,39 +46,39 @@ public class AdminManageApplicationTests {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 
         user1 = new User();
-        user1.setUserName("admin1");
+        user1.setUsername("admin1");
         user1.setAccountStatus(true);
-        user1.setUserType(UserType.ADMIN);
+        user1.setUserType(UserType.Admin);
         user1.setRemarksInfo("hello");
 
         user2 = new User();
-        user2.setUserName("client1");
+        user2.setUsername("client1");
         user2.setAccountStatus(true);
-        user2.setUserType(UserType.DATA_ANALYSER);
+        user2.setUserType(UserType.DataAnalyser);
         user2.setRemarksInfo("hey");
 
         user3 = new User();
-        user3.setUserName("client1");
+        user3.setUsername("client1");
         user3.setAccountStatus(true);
-        user3.setUserType(UserType.DATA_MANAGER);
+        user3.setUserType(UserType.DataManager);
         user3.setRemarksInfo("haha");
 
         user4 = new User();
-        user4.setUserName("admin1");
+        user4.setUsername("admin1");
         user4.setAccountStatus(false);
-        user4.setUserType(UserType.ADMIN);
+        user4.setUserType(UserType.Admin);
         user4.setRemarksInfo("hello");
 
         mockMvc.perform(
                 put("/admin/manage")
-                        .contentType(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(JSON.toJSONBytes(user1))
         );
 
         mockMvc.perform(
                 put("/admin/manage")
-                        .contentType(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(JSON.toJSONBytes(user2))
         );
@@ -97,7 +97,7 @@ public class AdminManageApplicationTests {
 //                        .param("userType", UserType.ADMIN)
 //                        .param("accountStatus", "true")
 //                        .param("remarksInfo", "hello")
-                        .content(JSON.toJSONBytes(new User("admin3")))
+                        .content(JSON.toJSONString(user3))
         )
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -145,12 +145,12 @@ public class AdminManageApplicationTests {
     @Test
     public void login() throws Exception {
         User u = new User();
-        u.setUserName("admin1");
-        u.setPassWord("123456");
+        u.setUsername("admin1");
+        u.setPassword("123456");
 
         String response = mockMvc.perform(
                 put("/admin/login")
-                        .contentType(MediaType.APPLICATION_JSON)
+//                        .contentType(MediaType.APPLICATION_JSON)
                         .content(JSON.toJSONBytes(u))
 //                        .param("userName", "admin1")
 //                        .param("passWord", "123456")

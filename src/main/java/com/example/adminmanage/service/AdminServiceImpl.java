@@ -2,8 +2,8 @@ package com.example.adminmanage.service;
 
 import com.example.adminmanage.dao.UserRepository;
 import com.example.adminmanage.entity.User;
+import com.example.adminmanage.entity.UserType;
 import com.example.adminmanage.global.config.StatusCode;
-import com.example.adminmanage.global.config.UserType;
 import com.example.adminmanage.global.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public ResponseEntity changeUser(User user) {
-        User user1 = userRepository.findUserByUserName(user.getUserName());
+        User user1 = userRepository.findUserByUsername(user.getUsername());
         if (user1 == null)
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
 
@@ -43,17 +43,17 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     public ResponseEntity addUser(User user) {
 
-        if (userRepository.existsByUserName(user.getUserName()))
+        if (userRepository.existsByUsername(user.getUsername()))
             return ResponseFactory.commitResponse((StatusCode.COMMIT_USER_EXIST));
 
-        User user1 = new User(user.getUserName());
+        User user1 = new User(user.getUsername());
         return ResponseFactory.commitResponse(checkAndFlush(user1, user));
 
     }
 
     @Override
     public ResponseEntity checkUserIfValid(String name, String pswd) {
-        User user1 = userRepository.findUserByUserName(name);
+        User user1 = userRepository.findUserByUsername(name);
 
         if (user1 == null)
             return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_USERNAME);
@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService {
         if (!user1.isAccountStatus())
             return ResponseFactory.failLoginResponse(StatusCode.LOGIN_NEGATIVE_STATUS);
 
-        if (!user1.getPassWord().equals(pswd))
+        if (!user1.getPassword().equals(pswd))
             return ResponseFactory.failLoginResponse(StatusCode.LOGIN_WRONG_PASSWORD);
 
         return ResponseFactory.successLoginResponse(user1);
@@ -76,18 +76,18 @@ public class AdminServiceImpl implements AdminService {
             return ResponseFactory.commitResponse(StatusCode.COMMIT_FAIL);
 
         user1.resetPassword();
-        user1.setPassWordStatus(false);
+        user1.setPasswordStatus(false);
         userRepository.save(user1);
         return ResponseFactory.commitResponse(StatusCode.COMMIT_SUCCESS);
 
     }
 
     private String checkAndFlush(User originUser, User newUser) {
-        String type = newUser.getUserType();
+        UserType type = newUser.getUserType();
         if (
-                type.equals(UserType.ADMIN) ||
-                type.equals(UserType.DATA_ANALYSER) ||
-                type.equals(UserType.DATA_MANAGER))
+                type.equals(UserType.Admin) ||
+                type.equals(UserType.DataAnalyser) ||
+                type.equals(UserType.DataManager))
         {
             originUser.setUserType(newUser.getUserType());
             originUser.setAccountStatus(newUser.isAccountStatus());

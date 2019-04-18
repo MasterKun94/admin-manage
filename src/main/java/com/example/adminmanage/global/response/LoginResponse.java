@@ -1,6 +1,7 @@
 package com.example.adminmanage.global.response;
 
 import com.example.adminmanage.entity.User;
+import com.example.adminmanage.entity.UserType;
 import com.example.adminmanage.global.config.StatusCode;
 import lombok.Getter;
 
@@ -11,9 +12,9 @@ import java.util.List;
 @Getter
 //@Setter
 public class LoginResponse implements ResponseEntity {
-    private String userName;
+    private String username;
     private String token;
-    private String userType;
+    private UserType userType;
     private Date createTime;
     private Date loginTime;
     private String code;
@@ -21,7 +22,7 @@ public class LoginResponse implements ResponseEntity {
     private List<String> commonMenu;
 
     LoginResponse(User user) {
-        this.userName = user.getUserName();
+        this.username = user.getUsername();
         this.userType = user.getUserType();
         this.loginTime = new Date();
         this.createTime = user.getCreateTime();
